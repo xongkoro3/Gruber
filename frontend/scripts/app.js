@@ -175,7 +175,7 @@ myApp.controller('mainController', ['$scope', '$http', 'TripModel', function ($s
 	//   });
 	// 
 }])
-// Form Controller
+
 myApp.controller('secondController', ['$scope', '$window', 'TripModel', function ($scope, $window, TripModel) {
 	$scope.getFormData = function () {
 		alert("submitted");
@@ -194,7 +194,7 @@ myApp.controller('secondController', ['$scope', '$window', 'TripModel', function
 }]);
 
 myApp.run([function () {
-	mapboxgl.accessToken = 'pk.eyJ1IjoiZ3J1YmVybmQiLCJhIjoiY2pydHVyamE0MDJpdDQ0b2gxOHlqM2VtaiJ9.KdzYKQORKLwPfgATFxYIZw';
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZ3J1YmVybmQiLCJhIjoiY2pzeHR1cndmMDV6djRicjUwMWJ6MnVxYiJ9.GoYMc9i2Nf0O5ljlG869jA';
 
 }])
 
@@ -209,12 +209,9 @@ myApp.controller('mapController', ['$scope', '$http', 'TripModel','GeoDecoder', 
 	var coordsArr = getListOfAddrObj.then(function(addrObjects){
 		var coordsPromises = []
 		addrObjects.forEach(function (addrObject){
-//			addrObject.set("finished", true);
-//			console.log(addrObject);
 			coordsPromises.push(translateAddrToCoord(addrObject));
 		});
 		Promise.all(coordsPromises).then(data => {
-			console.log(data);
 			drawMarkers(data);
 		});
 	});													 
@@ -242,14 +239,20 @@ myApp.controller('mapController', ['$scope', '$http', 'TripModel','GeoDecoder', 
 	$scope.glControls = {
 		navigation: {
 			enabled: true,
+			options: {
+				position: 'top-left'
+			}
 		},
 		geolocate: {
             enabled: true,
-			position: 'top-right'
+            options: {
+              position: 'top-left'
+            }
         },
 		geocoder: {
             enabled: true,
             options: {
+              position: 'top-left',
               accessToken: mapboxgl.accessToken
             }
         }
@@ -277,16 +280,11 @@ myApp.controller('mapController', ['$scope', '$http', 'TripModel','GeoDecoder', 
 	
 }]);
 
-myApp.controller('friendController', ['$scope','TripModel', function ($scope, TripModel) {
-	TripModel.getByDest('Chicago').then(function(getResponse){
-		for(i = 0; i < $scope.messages.length; i++){
-			$scope.messages[i].what = getResponse.attributes.city;
-		}
-	});
+myApp.controller('friendController', ['$scope', function ($scope) {
 	var imagePath = 'img/list/60.jpeg';
 	$scope.messages = [{
 		face: imagePath,
-		what: 'Stuff',
+		what: 'Chicago this weekend?',
 		who: 'Gary',
 		when: '3:08PM',
 		notes: " Let's go! "

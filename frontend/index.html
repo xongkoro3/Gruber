@@ -3,7 +3,6 @@
 
 <head>
     <!-- Customized style sheet -->
-    <link href="style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v0.43.0/mapbox-gl.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-mapboxgl-directive/0.43.2/angular-mapboxgl-directive.min.css">
@@ -12,7 +11,7 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
     <!-- Material Icon font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link href="./style/style.css" rel="stylesheet">
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-route.min.js"></script>
@@ -24,12 +23,14 @@
     <!-- Angular Parse files -->
     <script src="node_modules/parse/dist/parse.min.js"></script>
     <script src="node_modules/angular-parse/angular-parse.js"></script>
-    <script src="app.js"></script>
+    <script src="./scripts/app.js"></script>
     <!-- Map API -->
    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.43.0/mapbox-gl.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-mapboxgl-directive/0.43.2/angular-mapboxgl-directive.min.js"></script>
+	<script src="./scripts/angular-mapboxgl-directive.js"></script>
 </head>
 <body>
+	<md-content flex="" layout-padding="">
     <div ng-cloak="" class="navBar">
       <md-content class="md-padding">
         <md-nav-bar
@@ -49,7 +50,8 @@
            Friends
           </md-nav-item>
         </md-nav-bar>
-            <md-content flex="" layout-padding="">
+	  </md-content>
+    </div>
 <!--
                 <span>{{status}}</span>
                 <div class="ext-content">
@@ -57,10 +59,6 @@
                 </div>
 -->
             <div ng-view></div>
-          </md-content>
-        </md-content>
-    </div>
-
 <!--
     <div class="card" ng-repeat="item in cards track by $index">
         <img class="cardpreview" ng-src="{{item.link}}">
@@ -77,7 +75,7 @@
 
     </div>
 -->
-
+ </md-content>
 </body>
 
 </html>
